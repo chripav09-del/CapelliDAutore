@@ -73,12 +73,17 @@
 }
 .specchio__vetro {
   position: relative; height: 100%; border-radius: 50%; overflow: hidden;
+  /* nel contesto 3D overflow+radius non ritaglia le foto animate: il clip-path sì */
+  clip-path: ellipse(50% 50% at 50% 50%);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
   background: var(--marmo-3);
   box-shadow: inset 0 0 0 2px hsl(30 36% 16%), inset 0 0 30px hsl(0 0% 0% / .6);
   transform: translateZ(1px);
 }
 .specchio__vetro img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  border-radius: 50%; clip-path: ellipse(50% 50% at 50% 50%);
   opacity: 0; transform: scale(1.08);
   transition: opacity 1.1s var(--stato), transform 3.8s var(--entra);
 }
