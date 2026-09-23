@@ -1,4 +1,4 @@
-import { avviaMarmo } from './marmo.js';
+import { avviaMarmo } from './marmo.js?v=2';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -174,6 +174,8 @@ if (specchio) {
     corpo.style.setProperty('--rx', `${-stato.y * 10}deg`);
     corpo.style.setProperty('--lx', `${50 - stato.x * 30}%`);
     corpo.style.setProperty('--ly', `${30 - stato.y * 25}%`);
+    corpo.style.setProperty('--ox', `${(-stato.x * 12).toFixed(1)}px`);
+    corpo.style.setProperty('--oy', `${(-stato.y * 12).toFixed(1)}px`);
     const fermoOra = Math.abs(bersaglio.x - stato.x) + Math.abs(bersaglio.y - stato.y) + Math.abs(stato.vx) + Math.abs(stato.vy) < 0.001;
     raf = fermoOra ? 0 : requestAnimationFrame(passo);
   };
