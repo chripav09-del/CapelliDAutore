@@ -1,0 +1,130 @@
+/* Capelli D'Autore — token, reset, tipografia */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-latin.woff2") format("woff2");
+  font-weight: 400 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/onest-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* marmo nero del pavimento */
+  --marmo: hsl(24 20% 5%);
+  --marmo-2: hsl(24 16% 9%);
+  --marmo-3: hsl(26 14% 14%);
+  /* testo */
+  --avorio: hsl(38 35% 93%);
+  --fumo: hsl(32 14% 70%);
+  /* oro del logo e delle cornici */
+  --oro: hsl(35 45% 68%);
+  --oro-viva: hsl(38 62% 76%);
+  --oro-scuro: hsl(33 34% 48%);
+  --inchiostro: hsl(26 22% 13%);
+  /* la luce blu del salone: solo focus e "aperto ora" */
+  --led: hsl(228 95% 68%);
+  --filo: hsl(30 14% 24%);
+  --errore: hsl(4 78% 70%);
+  --ok: hsl(140 40% 62%);
+
+  --cornice: conic-gradient(from 210deg,
+      hsl(33 38% 34%), hsl(40 70% 84%), hsl(33 34% 48%), hsl(38 62% 76%),
+      hsl(30 36% 30%), hsl(35 45% 68%), hsl(42 80% 88%), hsl(33 38% 34%));
+
+  --f-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --f-testo: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* scala 1.25 */
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-m: 1.0625rem;
+  --t-l: clamp(1.25rem, 1.1rem + 0.6vw, 1.33rem);
+  --t-xl: clamp(1.5rem, 1.25rem + 1vw, 1.66rem);
+  --t-2xl: clamp(1.9rem, 1.5rem + 1.8vw, 2.6rem);
+  --t-3xl: clamp(2.4rem, 1.7rem + 3.2vw, 4.05rem);
+  --t-4xl: clamp(2.9rem, 1.9rem + 5vw, 5.6rem);
+
+  --s-1: 8px; --s-2: 16px; --s-3: 24px; --s-4: 32px; --s-6: 48px; --s-8: 64px; --s-12: 96px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --largo: 1200px;
+
+  --entra: cubic-bezier(0.16, 1, 0.3, 1);
+  --stato: cubic-bezier(0.4, 0, 0.2, 1);
+  --r: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--marmo);
+  color: var(--avorio);
+  font-family: var(--f-testo);
+  font-size: var(--t-m);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+@media (min-width: 900px) { body { font-size: 1.125rem; } }
+
+img, svg, canvas { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+p { margin: 0 0 1em; max-width: 64ch; }
+ul, ol { padding: 0; margin: 0; list-style: none; }
+
+h1, h2, h3, .display {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-stretch: 82%;
+  font-variation-settings: "opsz" 96;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+h2 { font-size: var(--t-3xl); }
+h3 { font-size: var(--t-xl); font-variation-settings: "opsz" 32; line-height: 1.15; letter-spacing: -0.01em; }
+
+.etichetta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: var(--t-xs); font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--oro);
+}
+.etichetta::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+.promessa { font-size: var(--t-l); color: var(--fumo); max-width: 46ch; margin-top: var(--s-2); }
+
+:focus-visible { outline: 3px solid var(--led); outline-offset: 3px; border-radius: 6px; }
+
+.salta {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--oro); color: var(--inchiostro); padding: 10px 16px; border-radius: 8px;
+  font-weight: 600; text-decoration: none; transition: top .2s var(--stato);
+}
+.salta:focus { top: 12px; }
+
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.contenitore { width: min(100% - 2 * var(--gutter), var(--largo)); margin-inline: auto; }
+
+::selection { background: var(--oro); color: var(--inchiostro); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
